@@ -30,6 +30,7 @@ const specializationOptions = [
 ];
 
 const ApplyDoctor = () => {
+  const apiUrl = process.env.REACT_APP_API_URL;
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -38,7 +39,7 @@ const ApplyDoctor = () => {
     try {
       dispatch(showLoading());
       const res = await axios.post(
-        "/api/v1/user/apply-doctor",
+        `${apiUrl}/api/v1/user/apply-doctor`,
         {
           ...values,
           userId: user._id,

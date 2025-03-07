@@ -7,6 +7,7 @@ import { showLoading, hideLoading } from "../redux/features/alertSlice";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 const Notifications = () => {
+  const apiUrl = process.env.REACT_APP_API_URL;
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.user);
@@ -15,7 +16,7 @@ const Notifications = () => {
     try {
       dispatch(showLoading());
       const res = await axios.post(
-        "/api/v1/user/get-all-notification",
+        `${apiUrl}/api/v1/user/get-all-notification`,
         {
           userId: user._id,
         },
@@ -47,7 +48,7 @@ const Notifications = () => {
   const handleDeleteAllRead = async () => {
     try{
       dispatch(showLoading());
-      const res = await axios.post("/api/v1/user/delete-all-notification",
+      const res = await axios.post(`${apiUrl}/api/v1/user/delete-all-notification`,
       {
         userId: user._id,
       },

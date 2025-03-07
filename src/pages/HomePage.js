@@ -6,10 +6,11 @@ import {Row} from 'antd'
 import DoctorList from '../components/DoctorList';
 const HomePage = () => {
 const [doctors,setDoctors] = useState([]);
+const apiUrl = process.env.REACT_APP_API_URL;
 
   const getUserData=async ()=>{
       try{
-        const res  = await axios.get('/api/v1/user/getAllDoctors',{
+        const res  = await axios.get(`${apiUrl}/api/v1/user/getAllDoctors`,{
           headers:{
             Authorization:"Bearer " + localStorage.getItem('token')
           }

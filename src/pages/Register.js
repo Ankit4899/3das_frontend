@@ -12,12 +12,13 @@ import { hideLoading, showLoading } from "../redux/features/alertSlice";
 const Register = () => {
 const navigate = useNavigate();
 const dispatch = useDispatch();
+const apiUrl = process.env.REACT_APP_API_URL;
     // Form handler
   const onFinishHandler = async (values) => {
     // console.log(values);
     try{
       dispatch(showLoading());
-      const res = await axios.post('/api/v1/user/register',values);
+      const res = await axios.post(`${apiUrl}/api/v1/user/register`,values);
       dispatch(hideLoading());
       if(res.data.success){
         message.success("Registerd successfully");

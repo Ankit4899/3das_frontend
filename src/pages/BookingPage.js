@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Layout from "../components/Layout";
 import { hideLoading, showLoading } from "../redux/features/alertSlice";
 const BookingPage = () => {
+  const apiUrl = process.env.REACT_APP_API_URL;
   const { user } = useSelector((state) => state.user);
   const params = useParams();
   const [doctors, setDoctors] = useState([]);
@@ -18,7 +19,7 @@ const BookingPage = () => {
   const getUserData = async () => {
     try {
       const res = await axios.post(
-        "/api/v1/doctor/getDoctorById",
+        `${apiUrl}/api/v1/doctor/getDoctorById`,
         { doctorId: params.doctorId },
         {
           headers: {
@@ -42,7 +43,7 @@ const BookingPage = () => {
       }
       dispatch(showLoading());
       const res = await axios.post(
-        "/api/v1/user/book-appointment",
+        `${apiUrl}/api/v1/user/book-appointment`,
         {
           doctorId: params.doctorId,
           userId: user._id,
@@ -73,7 +74,7 @@ const BookingPage = () => {
     try {
       dispatch(showLoading());
       const res = await axios.post(
-        "/api/v1/user/booking-availability",
+        `${apiUrl}/api/v1/user/booking-availability`,
         {
           doctorId: params.doctorId,
           date,

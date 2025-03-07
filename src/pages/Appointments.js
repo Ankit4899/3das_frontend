@@ -5,11 +5,11 @@ import moment from "moment";
 import { Table } from "antd";
 const Appointments = () => {
 const [appointments,setAppointments] = useState([])
-
+const apiUrl = process.env.REACT_APP_API_URL;
 
 const getAppointments = async()=>{
     try{
-        const res = await axios.get('api/v1/user/users-appointments',{
+        const res = await axios.get(`${apiUrl}api/v1/user/users-appointments`,{
             headers:{
                 Authorization:`Bearer ${localStorage.getItem('token')}`
             }

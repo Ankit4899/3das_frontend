@@ -5,10 +5,11 @@ import '@ant-design/v5-patch-for-react-19';
 import {Table} from 'antd'
 const Users = () => {
 const [users,setUsers] = useState([])
+const apiUrl = process.env.REACT_APP_API_URL;
 //get users
 const getUsers = async()=>{
 try{
-const res = await axios.get('/api/v1/admin/getAllUsers',{
+const res = await axios.get(`${apiUrl}/api/v1/admin/getAllUsers`,{
   headers:{
      Authorization:`Bearer ${localStorage.getItem("token")}`
   }
