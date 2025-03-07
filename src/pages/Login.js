@@ -10,12 +10,13 @@ import { showLoading,hideLoading } from "../redux/features/alertSlice";
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const apiUrl = process.env.REACT_APP_API_URL;
   // Form handler
   const onFinishHandler = async (values) => {
     // console.log(values);
     try {
       dispatch(showLoading());
-      const res = await axios.post("/api/v1/user/login", values);
+      const res = await axios.post(`${apiUrl}/api/v1/user/login`, values);
       window.location.reload()
       dispatch(hideLoading());
 
@@ -32,6 +33,7 @@ const Login = () => {
       message.error("Something wrong");
     }
   };
+  console.log("login",apiUrl);
   return (
     <>
       <div className="form-container">

@@ -17,6 +17,7 @@ import Register from "./pages/Register";
 
 function App() {
   const { loading } = useSelector((state) => state.alerts);
+ 
   return (
     <>
       <BrowserRouter>
