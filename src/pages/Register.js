@@ -22,7 +22,7 @@ const apiUrl = process.env.REACT_APP_API_URL;
       dispatch(hideLoading());
       if(res.data.success){
         message.success("Registerd successfully");
-        navigate(`${apiUrl}/login`);
+        navigate('/login');
       }else{
         message.error(res.data.message);
       }
